@@ -43,9 +43,15 @@ target_link_libraries(g4halfspace ${Geant4_LIBRARIES} CGAL::CGAL)
 
 file(GLOB HalfSpaceTestSources ${PROJECT_SOURCE_DIR}/test/*cc)
 file(GLOB HalfSpaceTestHeaders ${PROJECT_SOURCE_DIR}/test/*hh)
-add_executable(g4halfspace_test ${HalfSpaceTestSources} ${HalfSpaceTestHeaders})
-target_compile_options(g4halfspace_test PRIVATE -Werror)
-target_link_libraries(g4halfspace_test ${Geant4_LIBRARIES} g4halfspace)
+add_executable(test_g4halfspace ${HalfSpaceTestSources} ${HalfSpaceTestHeaders})
+target_compile_options(test_g4halfspace PRIVATE -Werror)
+target_link_libraries(test_g4halfspace ${Geant4_LIBRARIES} g4halfspace)
+
+file(GLOB FlukaTestSources ${PROJECT_SOURCE_DIR}/test_fluka/*cc)
+file(GLOB FlukaTestHeaders ${PROJECT_SOURCE_DIR}/test_fluka/*hh)
+add_executable(test_fluka ${FlukaTestSources} ${FlukaTestHeaders})
+target_compile_options(test_fluka PRIVATE -Werror)
+target_link_libraries(test_fluka ${Geant4_LIBRARIES} g4halfspace)
 
 # Copy over macros
 set(SCRIPTS vis.mac)
